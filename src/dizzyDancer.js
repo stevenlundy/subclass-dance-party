@@ -5,7 +5,7 @@ var DizzyDancer = function(top, left, timeBetweenSteps){
   this.top = top;
   this.direction = 1;
   this.radius = randomBetween(20, 50);
-  this.theta = 0;
+  this.theta = 8* Math.PI;
   this.centerY = top;
   this.centerX = this.left - this.radius;
    
@@ -22,8 +22,8 @@ DizzyDancer.prototype.step = function(){
   // call the old version of step at the beginning of any call to this new version of step
   this.oldStep();
 
-  this.theta += 0.5;
-  this.top = this.centerY + this.radius * Math.sin(this.theta);
+  this.theta -= 0.5;
+  this.top = this.centerY +  this.radius * Math.sin(this.theta);
   this.left = this.centerX + this.radius * Math.cos(this.theta);
   var styleSettings = {
     top: this.top,

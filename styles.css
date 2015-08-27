@@ -3,9 +3,13 @@ body, html{
 }
 body{
   margin: 0px;
-  background-color:#444;
+  background: url('http://www.fightabase.com/images/arenas/273.png');
+  background-size: 1920px;
+  background-repeat: no-repeat;
+  background-color: rgb(8, 10, 23);
   font-size: 18px;
 }
+
 body, a:link, a:visited, a:active{
   color: lightblue;
 }

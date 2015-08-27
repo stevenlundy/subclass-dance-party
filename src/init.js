@@ -16,19 +16,8 @@ $(document).ready(function(){
      * to the stage.
      */
     var dancerMakerFunctionName = $(this).data("dancer-maker-function-name");
+    spawnDancer(dancerMakerFunctionName);
 
-    // get the maker function for the kind of dancer we're supposed to make
-    var dancerMakerFunction = window[dancerMakerFunctionName];
-
-    // make a dancer with a random position
-
-    var dancer = new dancerMakerFunction( 
-      $("body").height() * Math.random(),
-      $("body").width() * Math.random(),
-      Math.random() * 1000
-    );
-    window.dancers.push(dancer);
-    $('body').append(dancer.$node);
   });
   $(".lineEmUp").on("click", function(event){
     var top = $("body").height()/2;
@@ -39,5 +28,31 @@ $(document).ready(function(){
       window.dancers[i].lineUp(top, left, 500);
     }
   });
+  $('body').on('keypress', function (event) {
+
+    if(event.which === 'n'.charCodeAt(0)){
+      spawnDancer('PizzaDancer');
+    } else if(event.which === 'p'.charCodeAt(0)){
+      spawnDancer('Pizza');
+    } else if(event.which === 'l'.charCodeAt(0)){
+      $(".lineEmUp").click();
+    }
+  });
+  $('body').mousemove(function(event){
+    window.mouseX = event.pageX;
+    window.mouseY = event.pageY;
+  })
 });
 
+var spawnDancer = function(dancerMakerFunctionName, top, left, time){
+  top = top === undefined ? $("body").height() * Math.random() : top;
+  left = left === undefined ? $("body").width() * Math.random() : left;
+  time = time === undefined ? Math.random() * 1000 : time;
+    // get the maker function for the kind of dancer we're supposed to make
+  var dancerMakerFunction = window[dancerMakerFunctionName];
+
+  var dancer = new dancerMakerFunction(top, left, time);
+  window.dancers.push(dancer);
+  $('body').append(dancer.$node);
+
+};

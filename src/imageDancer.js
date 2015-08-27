@@ -1,11 +1,34 @@
 var ImageDancer = function(top, left, timeBetweenSteps, imgURL){
   imgURL = imgURL || './img/NinjaTurtlesGif.gif';
   Dancer.apply(this, arguments);
-  var maxDimension = 200;
-  var img = new Image();
-  img.src = imgURL;
   this.top = top;
   this.left = left;
+  if(isNaN(top) || isNaN(left)){
+    debugger;
+  }
+  this.setImage(imgURL);
+
+  this.$node.css({
+    border:'0px'
+  });
+
+};
+
+ImageDancer.prototype = Object.create(Dancer.prototype);
+ImageDancer.prototype.constructor = ImageDancer;
+
+ImageDancer.prototype.lineUp = function(top, left, time) {
+
+  this.top = top - this.scaledHeight/2;
+  this.left = left - this.scaledWidth/2;
+  this.$node.animate({top: this.top, left: this.left}, time);
+
+}
+
+ImageDancer.prototype.setImage = function(imgURL, maxDimension) {
+  var maxDimension = maxDimension || 200;
+  var img = new Image();
+  img.src = imgURL;
 
   img.onload = function(){
     this.actualHeight = img.height;
@@ -25,20 +48,4 @@ var ImageDancer = function(top, left, timeBetweenSteps, imgURL){
       height: this.scaledHeight+'px '
     });
   }.bind(this);
-
-  this.$node.css({
-    border:'0px'
-  });
-
 };
-
-ImageDancer.prototype = Object.create(Dancer.prototype);
-ImageDancer.prototype.constructor = ImageDancer;
-
-ImageDancer.prototype.lineUp = function(top, left, time) {
-
-  this.top = top - this.scaledHeight/2;
-  this.left = left - this.scaledWidth/2;
-  this.$node.animate({top: this.top, left: this.left}, time);
-
-}
