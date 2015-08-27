@@ -41,9 +41,12 @@ Dancer.prototype.lineUp = function(top, left, time) {
 Dancer.prototype.playAudio = function(audioURL) {
   var audio = new Audio();
   audio.src = audioURL;
-  audio.onload = function(){
+  audio.play();
+  debugger;
+  audio.addEventListener('oncanplaythrough', function(){
+    debugger;
     audio.play();
-  }.bind(this);
+  }.bind(this));
 }
 
 window.randomBetween = function(min, max) {
