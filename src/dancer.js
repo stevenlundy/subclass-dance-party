@@ -37,3 +37,7 @@ Dancer.prototype.lineUp = function(top, left, time) {
 window.randomBetween = function(min, max) {
   return Math.random() * (max - min) + min;
 };
+
+window.getCenter = function (distance, dimension) {
+  return distance + dimension/2;
+}

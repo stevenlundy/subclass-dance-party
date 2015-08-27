@@ -32,8 +32,8 @@ SideToSideDancer.prototype.step = function(){
 
 SideToSideDancer.prototype.lineUp = function(top, left, time) {
   this.orientation = 'v'
-  this.top = top;
+  this.top = top + this.distance/2 * this.direction;
   this.left = left;
-  this.$node.animate({top: top, left: left}, time);
+  this.$node.animate({top: this.top, left: this.left}, time);
 
 }

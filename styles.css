@@ -21,7 +21,11 @@ body, a:link, a:visited, a:active{
   background-color: #777;
 }
 .dancer{
+/*  background-image: url('./img/NinjaTurtlesGif.gif');
+    background-size: 100px 100px;
+  width: 100px;
+  height: 100px;*/
   border:10px solid red;
   border-radius:10px;
-  position:absolute;
+  position:fixed;
 }
