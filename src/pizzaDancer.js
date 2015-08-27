@@ -2,8 +2,9 @@ var PizzaDancer = function(top, left){
   
   var danceImg = 'http://rs891.pbsrc.com/albums/ac118/Deathwish_Zero/NinjaTurtlesGif.gif~c200';
   this.celebrationImg = 'http://media3.giphy.com/media/eXc9n3kzIjpT2/giphy.gif';
-  ImageDancer.call(this, top, left, 200, danceImg);
-  this.speed = 50;
+  ImageDancer.call(this, top, left, 100, danceImg);
+  this.speed = 25;
+  this.cowabunga = 'http://66.90.91.26/ost/teenage-mutant-ninja-turtles-iv-turtles-in-time/nwiqpcavnr/32.cowabunga-.mp3';
    
 };
 
@@ -21,6 +22,7 @@ PizzaDancer.prototype.step = function(){
   var centerY = getCenter(this.top, this.scaledHeight);
   var closestDistance;
   var closestAngle;
+  var mouseThreshold = Math.PI/3;
   var mouseDistanceX = window.mouseX - centerX;
   var mouseDistanceY = window.mouseY - centerY;
   var mouseDistance = Math.sqrt(Math.pow(mouseDistanceX, 2) + Math.pow(mouseDistanceY, 2));
@@ -43,13 +45,14 @@ PizzaDancer.prototype.step = function(){
 
     if(distance < this.speed){
       // got to a pizza
-      debugger;
+
       var pizzaIndex = dancers.indexOf(pizza);
       dancers.splice(pizzaIndex, 1);
       this.endStep();
       pizza.$node.animate({height: 0, width: 0}, 2000, 'swing', function(){
         pizza.$node.remove();
         this.setImage(this.celebrationImg);
+        this.playAudio(this.cowabunga);
         this.$node.animate({
           width: 250,
           height: 250,
@@ -62,11 +65,22 @@ PizzaDancer.prototype.step = function(){
       }.bind(this));
     }
     if(closestDistance === undefined || distance < closestDistance){
-      closestDistance = distance;
       closestAngle = Math.atan(distanceX/distanceY);
       if (pizzaCenterY < centerY){
         closestAngle += Math.PI;
       }
+
+      // Avoid mouse maths
+      if(distance > mouseDistance){
+        if(mouseAngle - mouseThreshold < closestAngle && closestAngle < mouseAngle + mouseThreshold){
+          if(closestAngle < mouseAngle){
+            closestAngle = mouseAngle - mouseThreshold;
+          } else {
+            closestAngle = mouseAngle + mouseThreshold;
+          }
+        }
+      }
+      closestDistance = distance;
     }
   }.bind(this));
 

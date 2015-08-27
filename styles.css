@@ -8,6 +8,7 @@ body{
   background-repeat: no-repeat;
   background-color: rgb(8, 10, 23);
   font-size: 18px;
+  cursor: none;
 }
 
 body, a:link, a:visited, a:active{
@@ -20,6 +21,7 @@ body, a:link, a:visited, a:active{
 .topbar{
   height:32px;
   background-color: #555;
+  cursor: initial;
 }
 .title{
   background-color: #777;

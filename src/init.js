@@ -1,6 +1,7 @@
 $(document).ready(function(){
   window.dancers = [];
 
+
   $(".addDancerButton").on("click", function(event){
     /* This function sets up the click handlers for the create-dancer
      * buttons on dancefloor.html. You should only need to make one small change to it.
@@ -41,13 +42,15 @@ $(document).ready(function(){
   $('body').mousemove(function(event){
     window.mouseX = event.pageX;
     window.mouseY = event.pageY;
-  })
+  });
+
+  spawnDancer('ShredderDancer', window.mouseY, window.mouseX);
 });
 
 var spawnDancer = function(dancerMakerFunctionName, top, left, time){
-  top = top === undefined ? $("body").height() * Math.random() : top;
-  left = left === undefined ? $("body").width() * Math.random() : left;
-  time = time === undefined ? Math.random() * 1000 : time;
+  top = top === undefined ? randomBetween(50, $("body").height() - 250) : top;
+  left = left === undefined ? randomBetween(50, $("body").width() - 250) : left;
+  time = time === undefined ? randomBetween(200, 1000) : time;
     // get the maker function for the kind of dancer we're supposed to make
   var dancerMakerFunction = window[dancerMakerFunctionName];
 

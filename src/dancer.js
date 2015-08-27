@@ -38,6 +38,14 @@ Dancer.prototype.lineUp = function(top, left, time) {
   this.$node.animate({top: top, left: left}, time);
 }
 
+Dancer.prototype.playAudio = function(audioURL) {
+  var audio = new Audio();
+  audio.src = audioURL;
+  audio.onload = function(){
+    audio.play();
+  }.bind(this);
+}
+
 window.randomBetween = function(min, max) {
   return Math.random() * (max - min) + min;
 };
