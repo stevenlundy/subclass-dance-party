@@ -42,11 +42,6 @@ Dancer.prototype.playAudio = function(audioURL) {
   var audio = new Audio();
   audio.src = audioURL;
   audio.play();
-  debugger;
-  audio.addEventListener('oncanplaythrough', function(){
-    debugger;
-    audio.play();
-  }.bind(this));
 }
 
 window.randomBetween = function(min, max) {
