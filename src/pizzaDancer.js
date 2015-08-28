@@ -1,7 +1,15 @@
 var PizzaDancer = function(top, left){
-  
-  var danceImg = 'http://rs891.pbsrc.com/albums/ac118/Deathwish_Zero/NinjaTurtlesGif.gif~c200';
+
+  var dancerImages = {
+    don: 'https://dl.dropboxusercontent.com/u/19660570/donnie.gif', 
+    raph: 'http://rs891.pbsrc.com/albums/ac118/Deathwish_Zero/NinjaTurtlesGif.gif~c200',
+    leo: 'https://dl.dropboxusercontent.com/u/19660570/leo.gif',
+    mike: 'https://dl.dropboxusercontent.com/u/19660570/mike.gif'
+  };
+  var charIdx = randomBetween(0, window.chars.length)
+  var danceImg = dancerImages[chars[charIdx]];
   this.celebrationImg = 'http://media3.giphy.com/media/eXc9n3kzIjpT2/giphy.gif';
+  debugger;
   ImageDancer.call(this, top, left, 100, danceImg);
   this.speed = 25;
   this.cowabunga = 'http://66.90.91.26/ost/teenage-mutant-ninja-turtles-iv-turtles-in-time/nwiqpcavnr/32.cowabunga-.mp3';
@@ -71,7 +79,7 @@ PizzaDancer.prototype.step = function(){
       }
 
       // Avoid mouse maths
-      if(distance > mouseDistance){
+      if(distance > mouseDistance && mouseDistance < 400){
         if(mouseAngle - mouseThreshold < closestAngle && closestAngle < mouseAngle + mouseThreshold){
           if(closestAngle < mouseAngle){
             closestAngle = mouseAngle - mouseThreshold;

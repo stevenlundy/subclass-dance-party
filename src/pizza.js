@@ -1,7 +1,7 @@
 var Pizza = function(top, left, timeBetweenSteps){
   var pizzaImg = 'http://warriorcatsrpg.com/awards/39538-mini.gif?1413432237'
   ImageDancer.call(this, top, left, timeBetweenSteps, pizzaImg);
-
+  this.$node.addClass('pizza');
   this.$node.css({'z-index': -1});
 };
 

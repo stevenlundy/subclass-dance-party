@@ -45,7 +45,7 @@ Dancer.prototype.playAudio = function(audioURL) {
 }
 
 window.randomBetween = function(min, max) {
-  return Math.random() * (max - min) + min;
+  return Math.floor(Math.random() * (max - min) + min);
 };
 
 window.getCenter = function (distance, dimension) {

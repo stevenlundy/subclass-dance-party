@@ -2,7 +2,7 @@ var ShredderDancer = function(top, left){
   var shredderImg = 'http://img34.photobucket.com/albums/v103/orochichimera/spriterips/animatedspriterips/shredderaltskx.gif';
   ImageDancer.call(this, top, left, 10, shredderImg);
 
-  this.$node.css({'z-index': -1});
+  this.$node.css({'z-index': 100});
 };
 
 ShredderDancer.prototype = Object.create(ImageDancer.prototype);

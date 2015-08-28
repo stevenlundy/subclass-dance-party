@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Bangers);
+
 body, html{
   height:100%;
 }
@@ -19,19 +21,84 @@ body, a:link, a:visited, a:active{
   float:right;
 }
 .topbar{
+  display: none;
   height:32px;
+  position: fixed;
   background-color: #555;
   cursor: initial;
+  z-index: 101;
 }
 .title{
   background-color: #777;
 }
 .dancer{
-/*  background-image: url('./img/NinjaTurtlesGif.gif');
-    background-size: 100px 100px;
-  width: 100px;
-  height: 100px;*/
   border:10px solid red;
   border-radius:10px;
   position:fixed;
+}
+.pizza {
+  -webkit-animation: wiggle 1s infinite;
+
+}
+
+@-webkit-keyframes wiggle {
+  0%{
+    -webkit-transform: rotateZ(-5deg);
+  }
+  50%{
+    -webkit-transform: rotateZ(5deg);
+  }
+  100%{
+    -webkit-transform: rotateZ(-5deg);
+  }
+}
+
+.character{
+  width: 250px;
+  height: 300px;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, .5);
+  border: gold 2px solid;
+  cursor: pointer;
+  float:left;
+}
+.character:nth-child(odd){
+  border-left-width: 4px;
+}
+.character:nth-child(even){
+  border-right-width: 4px;
+}
+.character:nth-child(n+3) {
+  border-bottom-width: 4px;
+}
+.character:nth-child(-n+2) {
+  border-top-width: 4px;
+}
+.character:hover{
+  background: rgba(50, 50, 50, .7);
+}
+.character.selected{
+  background: rgba(75, 75, 25, .4);
+}
+
+.char-select{
+  position: fixed;
+  z-index: 101;
+  width: 500px;
+  height: 600px;
+  left: 50%;
+  margin-left: -250px;
+  margin-top: 150px;
+}
+.submit-chars {
+  text-align: center;
+  font-family: 'Bangers', Sans-Serif;
+  color: red;
+  font-size: 48px;
+  cursor: pointer;
+}
+.character .name {
+  text-align: center;
+  font-family: 'Bangers', Sans-Serif;
+  font-size: 24px;
 }

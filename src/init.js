@@ -29,22 +29,36 @@ $(document).ready(function(){
       window.dancers[i].lineUp(top, left, 500);
     }
   });
-  $('body').on('keypress', function (event) {
-
-    if(event.which === 'n'.charCodeAt(0)){
-      spawnDancer('PizzaDancer');
-    } else if(event.which === 'p'.charCodeAt(0)){
-      spawnDancer('Pizza');
-    } else if(event.which === 'l'.charCodeAt(0)){
-      $(".lineEmUp").click();
-    }
-  });
   $('body').mousemove(function(event){
     window.mouseX = event.pageX;
     window.mouseY = event.pageY;
   });
+  $('.character').on('click', function(event) {
+    $(this).toggleClass('selected');
+  });
+  $('.submit-chars').on('click', function(){
+    window.chars = [];
+    $('.character').filter('.selected').each(function(){
+      chars.push($(this).attr('id'));
+    });
+    if (window.chars.length > 0){
+      $('.topbar').toggle();
+      $('.char-select').toggle();
 
-  spawnDancer('ShredderDancer', window.mouseY, window.mouseX);
+      spawnDancer('ShredderDancer', window.mouseY, window.mouseX);
+
+      $('body').on('keypress', function (event) {
+
+        if(event.which === 'n'.charCodeAt(0)){
+          spawnDancer('PizzaDancer');
+        } else if(event.which === 'p'.charCodeAt(0)){
+          spawnDancer('Pizza');
+        } else if(event.which === 'l'.charCodeAt(0)){
+          $(".lineEmUp").click();
+        }
+      });
+    }
+  });
 });
 
 var spawnDancer = function(dancerMakerFunctionName, top, left, time){
